@@ -6,6 +6,10 @@ export default class CreatePackagePage {
   clickInstallStepButton() {
     cy.get('[data-testid=install-step-button]').click()
   }
+  clickRebootStepButton() {
+    cy.get('[data-testid=add-step-buttons-expand-arrow]').click()
+    cy.get('[data-testid=reboot-step-button]').click()
+  }
 
   clickAddPowershellStepButton() {
     cy.get('[data-testid=add-step-buttons-expand-arrow]').click()
@@ -64,20 +68,29 @@ export default class CreatePackagePage {
     this.timeoutEntry.click().clear().type(customPackageTimeout)
   }
 
+  createRebootStep(
+      customName: string
+    ) {
+      this.clickRebootStepButton()
+      this.stepNameEntry.click().clear().type(customName)
+      cy.waitUntil(this.isDoneUploading)
+    }
+
   createPackageStep(
+    name: string,
     file: string,
-    exitcodes: string,
+    exitCodes: string,
     parameter: string,
-    isPowershell?: boolean
+    isPowershell?: boolean,
   ) {
     if (isPowershell) {
       this.clickAddPowershellStepButton()
     } else {
       this.clickInstallStepButton()
     }
-    this.stepNameEntry.click().clear().type('step 1 run hello world')
+    this.stepNameEntry.click().clear().type(name)
     this.stepParametersEntry.click().clear().type(parameter)
-    this.stepSuccessCodesEntry.click().clear().type(exitcodes)
+    this.stepSuccessCodesEntry.click().clear().type(exitCodes)
     if (isPowershell) {
       this.powershellUpload.selectFile(file, { force: true })
     } else {
