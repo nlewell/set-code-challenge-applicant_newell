@@ -59,6 +59,10 @@ Cypress.Commands.add('resetDemoData', () => {
     displayName: 'reset',
     message: `resetting demo data for current org`,
   })
+  cy.visit('/')
+  cy.get('[data-testid="ExpandMoreIcon"]').click()
+  cy.contains('Reset demo data').click()
+  cy.contains('Reset fixed demo data').click()
 })
 
 Cypress.Commands.add('getFirstDevice', () => {

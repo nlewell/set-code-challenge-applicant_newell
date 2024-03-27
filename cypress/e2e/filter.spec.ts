@@ -15,22 +15,26 @@ describe('filter', () => {
   beforeEach(() => {
     cy.loginAsTestUser()
     devicesListPage.load()
-    // TODO reset demo data: How do I load demo data?
+    cy.resetDemoData()
   })
 
   it('Can create a filter', () => {
     devicesListPage.openFilterModal()
-    filterModal.fillTextFilter('0', 'Software', 'Name', 'contains', 'edge')
+    filterModal.fillTextFilter('0', 'Software', 'Name', 'contains', 'Fake Software 2')
     filterModal.applyFilter()
+    cy.get('a').contains('Dummy Data 2')
+    cy.get('a').contains('Dummy Data 1').should('not.exist');
     //TODO validate filter only shows the correct devices
   })
 
   it('Can save a group', () => {
-    let groupName = 'has edge'
+    let groupName = 'Fake Software 2'
     devicesListPage.openFilterModal()
-    filterModal.fillTextFilter('0', 'Software', 'Name', 'contains', 'edge')
+    filterModal.fillTextFilter('0', 'Software', 'Name', 'contains', 'Fake Software 2')
     filterModal.saveGroup(groupName)
     devicesListPage.getGroupTab(groupName)
+    cy.get('a').contains('Dummy Data 2')
+    cy.get('a').contains('Dummy Data 1').should('not.exist');
     //TODO validate saved group only shows the correct devices
   })
 })
