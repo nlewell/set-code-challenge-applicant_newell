@@ -63,6 +63,7 @@ Cypress.Commands.add('resetDemoData', () => {
   cy.get('[data-testid="ExpandMoreIcon"]').click()
   cy.contains('Reset demo data').click()
   cy.contains('Reset fixed demo data').click()
+  cy.get('[data-testid="ExpandMoreIcon"]').click()
 })
 
 Cypress.Commands.add('getFirstDevice', () => {

@@ -10,12 +10,14 @@ import { Connect } from 'support'
 const connect = new Connect()
 
 describe('Custom package install', () => {
-  const customPackageName = 'test package installer 123456'
   const customPackageDescription = 'test package made in cypress tests'
   const customPackageVersion = '12'
   const customPackageTimeout = '1'
-  const time = new Date(Date.now());
-  let packageUniqueName = 'test package installer 123456' + time;
+  const day = new Date(Date.now());
+  const mill = day.getMilliseconds();
+  const mill = day.getSeconds();
+  const customPackageName = 'test package installer' + mill + day;
+  const packageUniqueName = 'test package installer' + day + mill;
   before(() => {
     cy.loginAsTestUser()
   })
@@ -42,8 +44,8 @@ describe('Custom package install', () => {
        '/S'
      )
      connect.createPackagePage.saveButton.click()
-     connect.packagesPage.searchBox.click().type(packageUniqueName)
-     connect.packagesPage.packagesGrid.contains(packageUniqueName).click()
+     connect.packagesPage.searchBox.click().type(customPackageName)
+     connect.packagesPage.packagesGrid.contains(customPackageName).click()
   })
 
   it('Custom package saved correctly', () => {
@@ -82,6 +84,7 @@ describe('Custom package install', () => {
          connect.createPackagePage.saveButton.click()
          connect.packagesPage.searchBox.click().type(packageUniqueName)
          connect.packagesPage.packagesGrid.contains(packageUniqueName).click()
+         cy.contains('step 3').should('exist');
   })
 
 })
