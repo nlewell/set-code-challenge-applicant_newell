@@ -25,26 +25,26 @@ describe('Custom package install', () => {
     cy.visit('/')
   })
 
-//   it('Can create a custom package', () => {
-//      // create custom package
-//      connect.navBar.openPackages()
-//      connect.packagesPage.createPackageButton.click()
-//      connect.createPackagePage.fillPackageInfo(
-//        customPackageName,
-//        customPackageDescription,
-//        customPackageVersion,
-//        customPackageTimeout
-//      )
-//      connect.createPackagePage.createPackageStep(
-//         'step 1',
-//        './cypress/resources/hello.exe',
-//        '420',
-//        '/S'
-//      )
-//      connect.createPackagePage.saveButton.click()
-//      connect.packagesPage.searchBox.click().type(customPackageName)
-//      connect.packagesPage.packagesGrid.contains(customPackageName).click()
-//   })
+  it('Can create a custom package', () => {
+     // create custom package
+     connect.navBar.openPackages()
+     connect.packagesPage.createPackageButton.click()
+     connect.createPackagePage.fillPackageInfo(
+       customPackageName,
+       customPackageDescription,
+       customPackageVersion,
+       customPackageTimeout
+     )
+     connect.createPackagePage.createPackageStep(
+        'step 1',
+       './cypress/resources/hello.exe',
+       '420',
+       '/S'
+     )
+     connect.createPackagePage.saveButton.click()
+     connect.packagesPage.searchBox.click().type(packageUniqueName)
+     connect.packagesPage.packagesGrid.contains(packageUniqueName).click()
+  })
 
   it('Custom package saved correctly', () => {
         connect.navBar.openPackages()
