@@ -69,8 +69,15 @@ describe('Custom package install', () => {
             '420',
             '/S'
           )
+          connect.createPackagePage.createPackageStep(
+                       'step 2',
+                      './cypress/resources/hello-world.ps1',
+                      '420',
+                      '/S',
+                      true
+                    )
          connect.createPackagePage.createRebootStep(
-                     'step 2'
+                     'step 3'
                   )
          connect.createPackagePage.saveButton.click()
          connect.packagesPage.searchBox.click().type(packageUniqueName)

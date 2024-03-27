@@ -13,7 +13,7 @@ export default class CreatePackagePage {
 
   clickAddPowershellStepButton() {
     cy.get('[data-testid=add-step-buttons-expand-arrow]').click()
-    cy.get('[data-testid=powershell-step-button]').click()
+    cy.get('[data-testid=script-step-button]').click()
   }
 
   get nameEntry() {
